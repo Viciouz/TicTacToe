@@ -16,12 +16,11 @@ namespace Client
         {
             TcpChannel tcpChannel = new TcpChannel();
             ChannelServices.RegisterChannel(tcpChannel, false);
-            
-            Type requiredType = typeof (IGameServer);
+
+            Type requiredType = typeof(IGameServer);
 
             remoteObject =
-                (IGameServer) Activator.GetObject(requiredType, "tcp://localhost:9998/TicTacToe");
-            
+                (IGameServer)Activator.GetObject(requiredType, "tcp://localhost:9998/TicTacToe");
         }
 
         public bool UpdatedSinceNow()
@@ -30,7 +29,7 @@ namespace Client
         }
 
         public string GetPlayer()
-        {           
+        {
             return remoteObject.GameState.CurrentPlayer.ToString();
         }
 
@@ -42,6 +41,16 @@ namespace Client
         public string GetMove()
         {
             return remoteObject.GameState.Command;
+        }
+
+        public Player StartNewGame()
+        {
+            return remoteObject.StartNewGame();
+        }
+
+        public Player[,] GetBoard()
+        {
+            return remoteObject.GameState.Board;
         }
 
     }
