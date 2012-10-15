@@ -33,15 +33,21 @@ namespace Server
         public GameState GameState
         {
             get { return gameState; }
-            set { gameState = value; }
+            set
+            {
+                gameState = value;
+                lastUpdated = DateTime.Now;
+            }
         }
 
         public bool NewStateSince(DateTime date)
         {
-            var log = String.Format("Varible date: {0} - Returned false", date.ToLongDateString());
+            var newerState = date > lastUpdated;
+
+            var log = String.Format("Varible date: {0} - Returned {1}", date.ToShortTimeString(), newerState);
             Logger.Log(log);
 
-            return false;
+            return newerState;
         }
     }
 
