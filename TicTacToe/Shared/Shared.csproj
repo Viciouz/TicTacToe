@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameServerConnector.cs" />
+    <Compile Include="IGameServer.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Player.cs" />

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Shared
 {
-    public interface GameServerConnector
+    public interface IGameServer
     {
         GameState GameState { get; set; }
         bool NewStateSince(DateTime date);

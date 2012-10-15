@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
-using System.Text;
 using Shared;
 
 namespace Server
@@ -28,9 +25,11 @@ namespace Server
         }
     }
 
-    class GameServer : GameServerConnector
+    class GameServer : IGameServer
     {
+        private GameState gameState; 
         public GameState GameState { get; set; }
+
         public bool NewStateSince(DateTime date)
         {
             return false;
