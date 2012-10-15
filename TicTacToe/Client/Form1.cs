@@ -35,14 +35,13 @@ namespace Client
            
            Random rnd = new Random();
             string random = rnd.Next(0, 100).ToString();
-            connect.SetGameState(new GameState(Player.Circle, random));
+            //connect.SetGameState(new GameState(Player.Circle, random));
             label1.Text = random;
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {           
-            label1.Text = connect.GetMove();
         }
     }
 }
