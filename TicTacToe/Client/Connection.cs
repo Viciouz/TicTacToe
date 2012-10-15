@@ -21,9 +21,12 @@ namespace Client
 
             remoteObject =
                 (IGameServer) Activator.GetObject(requiredType, "tcp://localhost:9998/TicTacToe");
-
-             remoteObject.NewStateSince(DateTime.Now);
             
+        }
+
+        public bool UpdatedSinceNow()
+        {
+            return remoteObject.NewStateSince(DateTime.Now);
         }
 
         public string GetPlayer()

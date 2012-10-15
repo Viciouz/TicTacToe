@@ -25,7 +25,7 @@ namespace Server
         }
     }
 
-    class GameServer : MarshalByRefObject, IGameServer 
+    class GameServer : MarshalByRefObject, IGameServer
     {
         private GameState gameState;
         private DateTime lastUpdated;
@@ -44,7 +44,7 @@ namespace Server
         {
             var newerState = date > lastUpdated;
 
-            var log = String.Format("Varible date: {0} - Returned {1}", date.ToShortTimeString(), newerState);
+            var log = String.Format("Varible date: {0} - Returned {1}", date, newerState);
             Logger.Log(log);
 
             return newerState;

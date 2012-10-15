@@ -21,7 +21,7 @@ namespace Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            connect = new Connection();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace Client
         private void button1_Click(object sender, EventArgs e)
         {
            
-           connect = new Connection();
+           
            Random rnd = new Random();
             string random = rnd.Next(0, 100).ToString();
             connect.SetGameState(new GameState(Player.Circle, random));
