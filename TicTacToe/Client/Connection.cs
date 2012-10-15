@@ -27,8 +27,13 @@ namespace Client
         }
 
         public string GetPlayer()
-        {
+        {           
             return remoteObject.GameState.CurrentPlayer.ToString();
+        }
+
+        public void SetGameState(GameState gs)
+        {
+            remoteObject.GameState = gs;
         }
 
     }

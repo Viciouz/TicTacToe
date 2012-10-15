@@ -6,11 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Shared;
 
 namespace Client
 {
     public partial class Form1 : Form
     {
+        private Connection connect;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +31,13 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Connection connect = new Connection();
+           connect = new Connection();
+           connect.SetGameState(new GameState(Player.Circle, "XXYY"));
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {            
             label1.Text = connect.GetPlayer();
         }
     }
