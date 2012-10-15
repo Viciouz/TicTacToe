@@ -7,7 +7,7 @@ namespace Shared
 {
     public interface GameServerBridge
     {
-        string GameState { get; set; }
-        bool newStateSince(DateTime date);
+        GameState GameState { get; set; }
+        bool NewStateSince(DateTime date);
     }
 }
