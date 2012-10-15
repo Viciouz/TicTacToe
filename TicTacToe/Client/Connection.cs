@@ -10,18 +10,25 @@ namespace Client
 {
     class Connection
     {
-        public bool ConnectToServer()
+        private IGameServer remoteObject;
+
+        public Connection()
         {
             TcpChannel tcpChannel = new TcpChannel();
             ChannelServices.RegisterChannel(tcpChannel, false);
-
-            Type requiredType = typeof (GameServerConnector);
-
-            GameServerConnector remoteObject =
-                (GameServerConnector) Activator.GetObject(requiredType, "tcp://localhost:9998/TicTacToe");
-
-            return remoteObject.NewStateSince(DateTime.Now);
             
+            Type requiredType = typeof (IGameServer);
+
+            remoteObject =
+                (IGameServer) Activator.GetObject(requiredType, "tcp://localhost:9998/TicTacToe");
+
+             remoteObject.NewStateSince(DateTime.Now);
+            
+        }
+
+        public string GetPlayer()
+        {
+            return remoteObject.GameState.CurrentPlayer.ToString();
         }
 
     }

@@ -29,7 +29,7 @@ namespace Client
         private void button1_Click(object sender, EventArgs e)
         {
             Connection connect = new Connection();
-            label1.Text = connect.ConnectToServer().ToString();
+            label1.Text = connect.GetPlayer();
         }
     }
 }
