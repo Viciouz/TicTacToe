@@ -7,5 +7,6 @@ namespace Client
 {
     class Connection
     {
+
     }
 }
