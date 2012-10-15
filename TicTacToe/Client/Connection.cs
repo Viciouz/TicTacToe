@@ -38,11 +38,6 @@ namespace Client
             remoteObject.GameState = gs;
         }
 
-        public string GetMove()
-        {
-            return remoteObject.GameState.Command;
-        }
-
         public Player StartNewGame()
         {
             return remoteObject.StartNewGame();

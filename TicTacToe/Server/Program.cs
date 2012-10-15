@@ -58,16 +58,30 @@ namespace Server
             {
                 case 0:
                     nextPlayer = Player.Circle;
+                    Logger.Log("First player joined");
+                    ResetBoard();
+                    Logger.Log("Board reset");
                     break;
                 case 1:
                     nextPlayer = Player.Cross;
+                    Logger.Log("Second player joined");
                     break;
                 default:
                     nextPlayer = Player.None;
+                    Logger.Log("Some douche who cannot play joined");
                     break;
             }
+
             currentNumberOfPlayers += 1;
+
+
+
             return nextPlayer;
+        }
+
+        private void ResetBoard()
+        {
+            GameState = new GameState(Player.Circle, new[,] { { Player.None, Player.None, Player.None }, { Player.None, Player.None, Player.None }, { Player.None, Player.None, Player.None } });
         }
     }
 
