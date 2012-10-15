@@ -36,5 +36,10 @@ namespace Client
             remoteObject.GameState = gs;
         }
 
+        public string GetMove()
+        {
+            return remoteObject.GameState.Command;
+        }
+
     }
 }

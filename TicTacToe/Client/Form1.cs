@@ -31,14 +31,18 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
+           
            connect = new Connection();
-           connect.SetGameState(new GameState(Player.Circle, "XXYY"));
-            
+           Random rnd = new Random();
+            string random = rnd.Next(0, 100).ToString();
+            connect.SetGameState(new GameState(Player.Circle, random));
+            label1.Text = random;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {            
-            label1.Text = connect.GetPlayer();
+        {           
+            label1.Text = connect.GetMove();
         }
     }
 }
