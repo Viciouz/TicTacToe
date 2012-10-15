@@ -16,7 +16,7 @@ namespace Server
             var tcpChannel = new TcpChannel(portNumber);
             ChannelServices.RegisterChannel(tcpChannel, false);
 
-            var connector = typeof (GameServer);
+            var connector = typeof(GameServer);
 
             RemotingConfiguration.RegisterWellKnownServiceType(connector, "TicTacToe", WellKnownObjectMode.Singleton);
 
@@ -27,12 +27,31 @@ namespace Server
 
     class GameServer : IGameServer
     {
-        private GameState gameState; 
-        public GameState GameState { get; set; }
+        private GameState gameState;
+        private DateTime lastUpdated;
+
+        public GameState GameState
+        {
+            get { return gameState; }
+            set
+            {
+                
+            }
+        }
 
         public bool NewStateSince(DateTime date)
         {
+            var log = String.Format("Varible date: {0} - Returned false", date.ToLongDateString());
+            Logger.Log(log);
             return false;
+        }
+    }
+
+    class Logger
+    {
+        public static void Log(string text)
+        {
+            Console.WriteLine("{0} - {1}", DateTime.Now, text);
         }
     }
 }
