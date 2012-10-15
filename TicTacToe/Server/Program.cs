@@ -43,6 +43,7 @@ namespace Server
         {
             var log = String.Format("Varible date: {0} - Returned false", date.ToLongDateString());
             Logger.Log(log);
+
             return false;
         }
     }
