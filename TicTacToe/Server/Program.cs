@@ -33,10 +33,7 @@ namespace Server
         public GameState GameState
         {
             get { return gameState; }
-            set
-            {
-                
-            }
+            set { gameState = value; }
         }
 
         public bool NewStateSince(DateTime date)
