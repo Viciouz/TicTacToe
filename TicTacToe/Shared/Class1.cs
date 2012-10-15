@@ -5,7 +5,9 @@ using System.Text;
 
 namespace Shared
 {
-    public class Class1
+    public interface GameServerBridge
     {
+        string GameState { get; set; }
+        bool newStateSince(DateTime date);
     }
 }
