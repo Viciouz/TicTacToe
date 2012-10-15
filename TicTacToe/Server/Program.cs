@@ -29,6 +29,7 @@ namespace Server
     {
         private GameState gameState;
         private DateTime lastUpdated;
+        private int currentNumberOfPlayers = 0;
 
         public GameState GameState
         {
@@ -48,6 +49,25 @@ namespace Server
             Logger.Log(log);
 
             return newerState;
+        }
+
+        public Player StartNewGame()
+        {
+            Player nextPlayer;
+            switch (currentNumberOfPlayers)
+            {
+                case 0:
+                    nextPlayer = Player.Circle;
+                    break;
+                case 1:
+                    nextPlayer = Player.Cross;
+                    break;
+                default:
+                    nextPlayer = Player.None;
+                    break;
+            }
+            currentNumberOfPlayers += 1;
+            return nextPlayer;
         }
     }
 

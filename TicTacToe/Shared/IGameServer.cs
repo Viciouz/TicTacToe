@@ -9,5 +9,6 @@ namespace Shared
     {
         GameState GameState { get; set; }
         bool NewStateSince(DateTime date);
+        Player StartNewGame();
     }
 }
