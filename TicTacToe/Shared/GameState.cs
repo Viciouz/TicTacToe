@@ -2,6 +2,7 @@ using System;
 
 namespace Shared
 {
+    [Serializable]
     public class GameState
     {
         public Player CurrentPlayer { get; private set; }
