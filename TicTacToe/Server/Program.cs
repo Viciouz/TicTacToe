@@ -25,7 +25,7 @@ namespace Server
         }
     }
 
-    class GameServer : IGameServer
+    class GameServer : MarshalByRefObject, IGameServer 
     {
         private GameState gameState;
         private DateTime lastUpdated;
