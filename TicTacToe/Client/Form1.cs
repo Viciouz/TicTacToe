@@ -125,9 +125,15 @@ namespace Client
         {
             var cb = new CheckBoard();
             var winner = cb.CheckArray(board);
-            if(winner!= Player.None)
+            if(winner != Player.None)
             {
                 SetMessage(winner == player ? "You won!" : "You lost :(");
+                foreach (var button in buttons)
+                    button.Enabled = false;
+            }
+            else if(cb.FullBoard(board))
+            {
+                SetMessage("It's a tie. Big surprise huh?");
                 foreach (var button in buttons)
                     button.Enabled = false;
             }
