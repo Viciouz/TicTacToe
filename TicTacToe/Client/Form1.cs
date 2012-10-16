@@ -124,7 +124,7 @@ namespace Client
         private void CheckWinner()
         {
             var cb = new CheckBoard();
-            var winner = cb.CheckArray(board);
+            var winner = cb.DetermineWinner(board);
             if(winner != Player.None)
             {
                 SetMessage(winner == player ? "You won!" : "You lost :(");
