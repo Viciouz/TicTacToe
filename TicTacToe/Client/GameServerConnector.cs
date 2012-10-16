@@ -8,11 +8,11 @@ using Shared;
 
 namespace Client
 {
-    class GameServer
+    class GameServerConnector
     {
         private IGameServer remoteObject;
         private GameState gameState;
-        private DateTime lastUpdate = DateTime.Now.AddMinutes(1);
+        private DateTime lastUpdate;
 
         public GameState GameState
         {
@@ -29,18 +29,16 @@ namespace Client
             set
             {
                 remoteObject.GameState = value;
+                gameState = value;
             }
         }
 
-        public GameServer()
+        public GameServerConnector()
         {
             var tcpChannel = new TcpChannel();
             ChannelServices.RegisterChannel(tcpChannel, false);
 
             var requiredType = typeof(IGameServer);
-
-            
-
             remoteObject =
                 (IGameServer)Activator.GetObject(requiredType, "tcp://localhost:9998/TicTacToe");
         }

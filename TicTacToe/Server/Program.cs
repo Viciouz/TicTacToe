@@ -43,7 +43,7 @@ namespace Server
 
         public bool NewStateSince(DateTime date)
         {
-            var newerState = date > lastUpdated;
+            var newerState = date < lastUpdated;
 
             var log = String.Format("Varible date: {0} - Returned {1}", date, newerState);
             Logger.Log(log);

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lbl_playerName = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_startNewGame = new System.Windows.Forms.Button();
             this.btn_00 = new System.Windows.Forms.Button();
             this.btn_01 = new System.Windows.Forms.Button();
             this.btn_02 = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             this.btn_21 = new System.Windows.Forms.Button();
             this.btn_22 = new System.Windows.Forms.Button();
             this.GameLoop = new System.Windows.Forms.Timer(this.components);
+            this.lbl_message = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_playerName
@@ -52,33 +53,34 @@
             this.lbl_playerName.TabIndex = 0;
             this.lbl_playerName.Text = "<<PLAYER NAME>>";
             // 
-            // button1
+            // btn_startNewGame
             // 
-            this.button1.Location = new System.Drawing.Point(177, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Start new Game";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.StartNewGame_Click);
+            this.btn_startNewGame.Location = new System.Drawing.Point(177, 12);
+            this.btn_startNewGame.Name = "btn_startNewGame";
+            this.btn_startNewGame.Size = new System.Drawing.Size(94, 23);
+            this.btn_startNewGame.TabIndex = 1;
+            this.btn_startNewGame.Text = "Start new Game";
+            this.btn_startNewGame.UseVisualStyleBackColor = true;
+            this.btn_startNewGame.Click += new System.EventHandler(this.StartNewGame_Click);
             // 
             // btn_00
             // 
             this.btn_00.Enabled = false;
             this.btn_00.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_00.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_00.Location = new System.Drawing.Point(15, 51);
+            this.btn_00.Location = new System.Drawing.Point(15, 87);
             this.btn_00.Name = "btn_00";
             this.btn_00.Size = new System.Drawing.Size(60, 60);
             this.btn_00.TabIndex = 3;
             this.btn_00.UseVisualStyleBackColor = true;
+            this.btn_00.Click += new System.EventHandler(this.btn_00_Click);
             // 
             // btn_01
             // 
             this.btn_01.Enabled = false;
             this.btn_01.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_01.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_01.Location = new System.Drawing.Point(113, 51);
+            this.btn_01.Location = new System.Drawing.Point(113, 87);
             this.btn_01.Name = "btn_01";
             this.btn_01.Size = new System.Drawing.Size(60, 60);
             this.btn_01.TabIndex = 4;
@@ -89,7 +91,7 @@
             this.btn_02.Enabled = false;
             this.btn_02.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_02.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_02.Location = new System.Drawing.Point(211, 51);
+            this.btn_02.Location = new System.Drawing.Point(211, 87);
             this.btn_02.Name = "btn_02";
             this.btn_02.Size = new System.Drawing.Size(60, 60);
             this.btn_02.TabIndex = 5;
@@ -100,7 +102,7 @@
             this.btn_10.Enabled = false;
             this.btn_10.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_10.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_10.Location = new System.Drawing.Point(15, 117);
+            this.btn_10.Location = new System.Drawing.Point(15, 153);
             this.btn_10.Name = "btn_10";
             this.btn_10.Size = new System.Drawing.Size(60, 60);
             this.btn_10.TabIndex = 6;
@@ -111,7 +113,7 @@
             this.btn_11.Enabled = false;
             this.btn_11.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_11.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_11.Location = new System.Drawing.Point(113, 117);
+            this.btn_11.Location = new System.Drawing.Point(113, 153);
             this.btn_11.Name = "btn_11";
             this.btn_11.Size = new System.Drawing.Size(60, 60);
             this.btn_11.TabIndex = 7;
@@ -122,7 +124,7 @@
             this.btn_12.Enabled = false;
             this.btn_12.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_12.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_12.Location = new System.Drawing.Point(211, 117);
+            this.btn_12.Location = new System.Drawing.Point(211, 153);
             this.btn_12.Name = "btn_12";
             this.btn_12.Size = new System.Drawing.Size(60, 60);
             this.btn_12.TabIndex = 8;
@@ -133,7 +135,7 @@
             this.btn_20.Enabled = false;
             this.btn_20.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_20.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_20.Location = new System.Drawing.Point(15, 190);
+            this.btn_20.Location = new System.Drawing.Point(15, 226);
             this.btn_20.Name = "btn_20";
             this.btn_20.Size = new System.Drawing.Size(60, 60);
             this.btn_20.TabIndex = 9;
@@ -144,7 +146,7 @@
             this.btn_21.Enabled = false;
             this.btn_21.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_21.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_21.Location = new System.Drawing.Point(113, 190);
+            this.btn_21.Location = new System.Drawing.Point(113, 226);
             this.btn_21.Name = "btn_21";
             this.btn_21.Size = new System.Drawing.Size(60, 60);
             this.btn_21.TabIndex = 10;
@@ -155,7 +157,7 @@
             this.btn_22.Enabled = false;
             this.btn_22.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_22.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_22.Location = new System.Drawing.Point(211, 190);
+            this.btn_22.Location = new System.Drawing.Point(211, 226);
             this.btn_22.Name = "btn_22";
             this.btn_22.Size = new System.Drawing.Size(60, 60);
             this.btn_22.TabIndex = 11;
@@ -165,11 +167,21 @@
             // 
             this.GameLoop.Tick += new System.EventHandler(this.serverPollTimer_Tick);
             // 
+            // lbl_message
+            // 
+            this.lbl_message.AutoSize = true;
+            this.lbl_message.Location = new System.Drawing.Point(12, 51);
+            this.lbl_message.Name = "lbl_message";
+            this.lbl_message.Size = new System.Drawing.Size(83, 13);
+            this.lbl_message.TabIndex = 12;
+            this.lbl_message.Text = "<<MESSAGE>>";
+            // 
             // TicTacToe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(284, 296);
+            this.Controls.Add(this.lbl_message);
             this.Controls.Add(this.btn_22);
             this.Controls.Add(this.btn_21);
             this.Controls.Add(this.btn_20);
@@ -179,7 +191,7 @@
             this.Controls.Add(this.btn_02);
             this.Controls.Add(this.btn_01);
             this.Controls.Add(this.btn_00);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_startNewGame);
             this.Controls.Add(this.lbl_playerName);
             this.Name = "TicTacToe";
             this.Text = "TicTacToe";
@@ -192,7 +204,7 @@
         #endregion
 
         private System.Windows.Forms.Label lbl_playerName;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_startNewGame;
         private System.Windows.Forms.Button btn_00;
         private System.Windows.Forms.Button btn_01;
         private System.Windows.Forms.Button btn_02;
@@ -208,6 +220,8 @@
         {
             InitializeComponent();
         }
+
+        private System.Windows.Forms.Label lbl_message;
     }
 }
 

@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayHandler.cs" />
-    <Compile Include="GameServer.cs" />
+    <Compile Include="GameServerConnector.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
