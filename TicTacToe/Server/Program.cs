@@ -73,9 +73,6 @@ namespace Server
             }
 
             currentNumberOfPlayers += 1;
-
-
-
             return nextPlayer;
         }
 

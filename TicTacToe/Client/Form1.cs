@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -10,50 +11,82 @@ using Shared;
 
 namespace Client
 {
-    public partial class Form1 : Form
+    public partial class TicTacToe : Form
     {
-        private Connection connect;
+        private GameServer gameServer;
         private Button[,] btnArray;
+        private List<Button> buttons;
+        private Player player;
 
-        public Form1()
+        private void TicTacToe_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
-            btnArray = new Button[,]{{button3, button4, button5},
-                                     {button6, button7, button8},
-                                     {button9, button10, button11}};
+            CollectButtons();
+
+            gameServer = new GameServer();
+            lbl_playerName.Text = string.Empty;
+
+            player = Player.None;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void CollectButtons()
         {
-            connect = new Connection();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            string random = rnd.Next(0, 100).ToString();
-            //connect.SetGameState(new GameState(Player.Circle, random));
-            var stg = connect.StartNewGame();
-            label1.Text = stg.ToString();
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {        }
-
-        public void ArrayToBoard(Player[,] arr)
-        {
-            for (int x = 0; x < arr.GetLength(0); x++)
-            {
-                for (int y = 0; y < arr.GetLength(1); y++)
+            btnArray = new Button[,]
                 {
-                     btnArray[x, y].Text = arr[x, y].ToString();                   
+                    {btn_00, btn_01, btn_02},
+                    {btn_10, btn_11, btn_12},
+                    {btn_20, btn_21, btn_22}
+                };
+
+            buttons = new List<Button>
+                {
+                    btn_00,
+                    btn_01,
+                    btn_02,
+                    btn_10,
+                    btn_11,
+                    btn_12,
+                    btn_20,
+                    btn_21,
+                    btn_22
+                };
+        }
+
+        private void StartNewGame_Click(object sender, EventArgs e)
+        {
+            AssignCurrentPlayer();
+            InitializeButtons();
+            GameLoop.Enabled = true;
+        }
+
+        private void AssignCurrentPlayer()
+        {
+            player = gameServer.StartNew();
+            lbl_playerName.Text = player.ToString();
+        }
+
+        private void InitializeButtons()
+        {
+            foreach (var button in buttons)
+                button.Enabled = true;
+            UpdateButtons(gameServer.GameState.Board);
+        }
+
+        public void UpdateButtons(Player[,] gameBoard)
+        {
+            for (int x = 0; x < gameBoard.GetLength(0); x++)
+            {
+                for (int y = 0; y < gameBoard.GetLength(1); y++)
+                {
+                    btnArray[x, y].Text = gameBoard[x, y].ToString();
                 }
+            }
+        }
+
+        private void serverPollTimer_Tick(object sender, EventArgs e)
+        {
+            if (gameServer.HasChanged())
+            {
+                UpdateButtons(gameServer.GameState.Board);
             }
         }
     }
