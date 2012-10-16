@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -79,8 +80,6 @@ namespace Client
             foreach (var button in buttons)
                 button.Enabled = true;
             UpdateButtons();
-            
-            
         }
 
         public void UpdateButtons()
@@ -93,6 +92,7 @@ namespace Client
         private void UpdateButton(Button btn, Player move)
         {
             var text = "";
+            var enabled = false;
             switch (move)
             {
                 case Player.Circle:
@@ -103,9 +103,11 @@ namespace Client
                     break;
                 default:
                     text = "";
+                    enabled = true;
                     break;
             }
             btn.Text = text;
+            btn.Enabled = enabled;
         }
 
         private void serverPollTimer_Tick(object sender, EventArgs e)
@@ -129,13 +131,34 @@ namespace Client
         private void SetMessage(string message)
         {
             lbl_message.Text = message;
+
+            
         }
 
-        private void btn_00_Click(object sender, EventArgs e)
+        private void Move_Click(object sender, EventArgs e)
         {
-            board[0, 0] = player;
-            var gameState = new GameState(player == Player.Circle ? Player.Cross : Player.Circle, board);
-            gameServerConnector.GameState = gameState;
+            if (IsMyTurn())
+            {
+                var currentButton = (Button) sender;
+
+                var coordsText = currentButton.Name.Substring(4);
+
+                Debug.Print(coordsText);
+
+                var xText = coordsText.Substring(0, 1);
+                var yText = coordsText.Substring(1);
+                var x = int.Parse(xText);
+                var y = int.Parse(yText);
+
+                board[x, y] = player;
+                var gameState = new GameState(player == Player.Circle ? Player.Cross : Player.Circle, board);
+                gameServerConnector.GameState = gameState;
+            }
+        }
+
+        private bool IsMyTurn()
+        {
+            return gameServerConnector.GameState.CurrentPlayer == player;
         }
     }
 }
