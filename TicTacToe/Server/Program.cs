@@ -2,7 +2,10 @@
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
+using System.ServiceModel;
+using System.ServiceModel.Description;
 using Shared;
+
 
 namespace Server
 {
@@ -10,13 +13,55 @@ namespace Server
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("Select connection \n1: WCF \n2: Remoting");
+            string selection = Console.ReadLine();
+
+            switch (selection)
+            {
+                case "1":
+                    SetWCF();
+                    break;
+                case "2":
+                    SetRemoting();
+                    break;
+                default:
+                    Console.WriteLine("Select 1 or 2");
+                    break;
+            }
+
+        }
+
+        public static void SetWCF()
+        {
+            Uri baseAddress = new Uri("http://localhost:8080/WCFtest");
+            ServiceHost host = new ServiceHost(typeof(GameServer), baseAddress);
+
+            ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
+            smb.HttpGetEnabled = true;
+            smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy12;
+            //smb.HttpGetBinding = new BasicHttpBinding();
+            host.Description.Behaviors.Add(smb);
+
+            host.Open();
+
+            Console.WriteLine("WCF Service is ready at {0}", baseAddress);
+            Console.WriteLine("Press <Enter> to exit");
+            Console.ReadLine();
+
+            host.Abort();
+
+        }
+
+        public static void SetRemoting()
+        {
             const int portNumber = 9998;
             Console.WriteLine("TicTacToe Server started on port {0}", portNumber);
 
             var tcpChannel = new TcpChannel(portNumber);
             ChannelServices.RegisterChannel(tcpChannel, false);
 
-            var connector = typeof(GameServer);
+            var connector = typeof (GameServer);
 
             RemotingConfiguration.RegisterWellKnownServiceType(connector, "TicTacToe", WellKnownObjectMode.Singleton);
 
