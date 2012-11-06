@@ -12,11 +12,12 @@ namespace Shared
     public interface IGameServer
     {
         GameState GameState { [OperationContract] get; [OperationContract] set; }
-
+        
         [OperationContract]
         bool NewStateSince(DateTime date);
-
+        
         [OperationContract]
         Player StartNewGame();
+        
     }
 }

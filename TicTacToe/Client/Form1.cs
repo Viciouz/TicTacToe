@@ -66,7 +66,7 @@ namespace Client
 
         private void GetBoard()
         {
-            board = gameServerConnector.GameState.Board;
+            //board = gameServerConnector.GameState.Board;
         }
 
         private void AssignCurrentPlayer()
@@ -170,8 +170,9 @@ namespace Client
                 var y = int.Parse(yText);
 
                 board[x, y] = player;
-                var gameState = new GameState(player == Player.Circle ? Player.Cross : Player.Circle, board);
-                gameServerConnector.GameState = gameState;
+                //TODO: convert BOARD
+                //var gameState = new GameState(player == Player.Circle ? Player.Cross : Player.Circle, board);
+                //gameServerConnector.GameState = gameState;
             }
         }
 

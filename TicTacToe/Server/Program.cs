@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using Shared;
+using System.Collections.Generic;
 
 
 namespace Server
@@ -13,64 +15,26 @@ namespace Server
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine("Select connection \n1: WCF \n2: Remoting");
-            string selection = Console.ReadLine();
-
-            switch (selection)
-            {
-                case "1":
-                    SetWCF();
-                    break;
-                case "2":
-                    SetRemoting();
-                    break;
-                default:
-                    Console.WriteLine("Select 1 or 2");
-                    break;
-            }
-
+            RunServer();
         }
 
-        public static void SetWCF()
+        public static void RunServer()
         {
-            Uri baseAddress = new Uri("http://localhost:8080/WCFtest");
-            ServiceHost host = new ServiceHost(typeof(GameServer), baseAddress);
-
-            ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-            smb.HttpGetEnabled = true;
-            smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy12;
-            //smb.HttpGetBinding = new BasicHttpBinding();
-            host.Description.Behaviors.Add(smb);
+            ServiceHost host = new ServiceHost(typeof(GameServer));
 
             host.Open();
 
-            Console.WriteLine("WCF Service is ready at {0}", baseAddress);
+            foreach (var endpoint in host.Description.Endpoints)
+                Console.WriteLine(endpoint.Address);
             Console.WriteLine("Press <Enter> to exit");
             Console.ReadLine();
 
             host.Abort();
-
-        }
-
-        public static void SetRemoting()
-        {
-            const int portNumber = 9998;
-            Console.WriteLine("TicTacToe Server started on port {0}", portNumber);
-
-            var tcpChannel = new TcpChannel(portNumber);
-            ChannelServices.RegisterChannel(tcpChannel, false);
-
-            var connector = typeof (GameServer);
-
-            RemotingConfiguration.RegisterWellKnownServiceType(connector, "TicTacToe", WellKnownObjectMode.Singleton);
-
-            Console.WriteLine("Press ENTER to quit");
-            Console.ReadKey();
         }
     }
 
-    class GameServer : MarshalByRefObject, IGameServer
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    class GameServer : IGameServer
     {
         private GameState gameState;
         private DateTime lastUpdated;
@@ -123,7 +87,11 @@ namespace Server
 
         private void ResetBoard()
         {
-            GameState = new GameState(Player.Circle, new[,] { { Player.None, Player.None, Player.None }, { Player.None, Player.None, Player.None }, { Player.None, Player.None, Player.None } });
+            var state = new Dictionary<Player, List<Coord>> { 
+            { Player.Circle, new List<Coord>() }, 
+            { Player.Cross, new List<Coord>() } 
+            };
+            GameState = new GameState(Player.Circle, state);
         }
     }
 

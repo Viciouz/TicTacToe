@@ -24,7 +24,7 @@ namespace Client
                 {
                     
                     lastUpdate = DateTime.Now;
-                    gameState = s.GameState;
+                    gameState = s.get_GameState();
                 }
                 return gameState;
             }
@@ -32,7 +32,7 @@ namespace Client
             set
             {
               //  remoteObject.GameState = value;
-                s.gameState = value;
+                s.set_GameState(value);
             }
         }
 

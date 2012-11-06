@@ -15,6 +15,12 @@ namespace Client.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IGameServer")]
     public interface IGameServer {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServer/get_GameState", ReplyAction="http://tempuri.org/IGameServer/get_GameStateResponse")]
+        Shared.GameState get_GameState();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServer/set_GameState", ReplyAction="http://tempuri.org/IGameServer/set_GameStateResponse")]
+        void set_GameState(Shared.GameState value);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServer/NewStateSince", ReplyAction="http://tempuri.org/IGameServer/NewStateSinceResponse")]
         bool NewStateSince(System.DateTime date);
         
@@ -47,6 +53,14 @@ namespace Client.ServiceReference1 {
         
         public GameServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public Shared.GameState get_GameState() {
+            return base.Channel.get_GameState();
+        }
+        
+        public void set_GameState(Shared.GameState value) {
+            base.Channel.set_GameState(value);
         }
         
         public bool NewStateSince(System.DateTime date) {

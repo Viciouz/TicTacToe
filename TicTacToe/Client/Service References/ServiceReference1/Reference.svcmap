@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3260143a-da5c-474b-bd49-94c497336acf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d1af2fff-3bb2-4e88-878d-41ec7df38e2f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,14 +18,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8080/WCFtest" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8080/femirad/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WCFtest.xsd" MetadataType="Schema" ID="97aa5546-bad2-4d4e-9adb-22a922e91b3f" SourceId="1" SourceUrl="http://localhost:8080/WCFtest?xsd=xsd2" />
-    <MetadataFile FileName="GameServer.wsdl" MetadataType="Wsdl" ID="d5ce0b86-8399-417c-b937-faf4079ab215" SourceId="1" SourceUrl="http://localhost:8080/WCFtest?wsdl" />
-    <MetadataFile FileName="WCFtest1.xsd" MetadataType="Schema" ID="01384e5d-7c2d-4df3-a417-b3f989d53e2e" SourceId="1" SourceUrl="http://localhost:8080/WCFtest?xsd=xsd0" />
-    <MetadataFile FileName="WCFtest2.xsd" MetadataType="Schema" ID="98016578-3dd8-491e-822b-13c757d7ee2f" SourceId="1" SourceUrl="http://localhost:8080/WCFtest?xsd=xsd1" />
-    <MetadataFile FileName="WCFtest.disco" MetadataType="Disco" ID="acd51a23-50b2-453b-9aa8-c8f1a306fa38" SourceId="1" SourceUrl="http://localhost:8080/WCFtest?disco" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="07b3746d-1661-4812-b86a-79e324017e6e" SourceId="1" SourceUrl="http://localhost:8080/femirad/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c6ecc645-5bc7-4ba6-adcf-2a0be10e7577" SourceId="1" SourceUrl="http://localhost:8080/femirad/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c6c44c08-ed66-4708-be0a-39de87018c92" SourceId="1" SourceUrl="http://localhost:8080/femirad/mex" />
+    <MetadataFile FileName="Shared.xsd" MetadataType="Schema" ID="5b319dfc-9229-4b26-858a-948bc5b83c9b" SourceId="1" SourceUrl="http://localhost:8080/femirad/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ac8530ee-040b-48ef-99aa-1ee07437a389" SourceId="1" SourceUrl="http://localhost:8080/femirad/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
