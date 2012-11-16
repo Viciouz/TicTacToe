@@ -17,7 +17,7 @@ namespace Shared
         bool NewStateSince(DateTime date);
         
         [OperationContract]
-        Player StartNewGame();
+        int StartNewGame();
         
     }
 }

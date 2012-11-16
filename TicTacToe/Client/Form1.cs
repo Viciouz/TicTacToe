@@ -19,6 +19,7 @@ namespace Client
         private List<Button> buttons;
         private Player player;
         private Player[,] board;
+        private BoardConverter bc;
 
         private void TicTacToe_Load(object sender, EventArgs e)
         {
@@ -66,7 +67,7 @@ namespace Client
 
         private void GetBoard()
         {
-            //board = gameServerConnector.GameState.Board;
+            board = bc.ConvertToPlayerArray(gameServerConnector.GameState.Plays, 3);
         }
 
         private void AssignCurrentPlayer()
@@ -141,7 +142,7 @@ namespace Client
 
         private void SetMoveText()
         {
-            var message = gameServerConnector.GameState.CurrentPlayer == player
+            var message = gameServerConnector.GameState.CurrentPlayer == (int)player
                               ? "Your move."
                               : "Waiting for opponent.";
             SetMessage(message);
@@ -173,12 +174,13 @@ namespace Client
                 //TODO: convert BOARD
                 //var gameState = new GameState(player == Player.Circle ? Player.Cross : Player.Circle, board);
                 //gameServerConnector.GameState = gameState;
+
             }
         }
 
         private bool IsMyTurn()
         {
-            return gameServerConnector.GameState.CurrentPlayer == player;
+            return gameServerConnector.GameState.CurrentPlayer == (int)player;
         }
     }
 }

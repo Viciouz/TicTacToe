@@ -8,7 +8,7 @@ namespace Client
 {
     public class BoardConverter
     {
-        public Player[,] ConvertToBoard(Dictionary<Player, List<Coord>> plays, int boardheight, int boardwidth)
+     /*   public Player[,] ConvertToBoard(int[] plays, int boardheight, int boardwidth)
         {
             Player[,] NewBoard = new Player[boardheight, boardwidth];
 
@@ -22,8 +22,8 @@ namespace Client
 
             return NewBoard;
         }
-
-        public Dictionary<Player, List<Coord>> ConvertToDictionary(Player[,] board)
+        */
+     /*   public Dictionary<Player, List<Coord>> ConvertToDictionary(Player[,] board)
         {
             Dictionary<Player, List<Coord>> NewDictionary = new Dictionary<Player, List<Coord>>();  
 
@@ -44,6 +44,46 @@ namespace Client
             }
             return NewDictionary;
 
+        }
+        */
+        public Player[,] ConvertToPlayerArray (int[] arr, int rowCount)
+        {
+            Player[,] playerBoard = new Player[rowCount,rowCount];
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                for (int j = 0; j < rowCount; j++)
+                {
+                    if (arr[i + j] == 1)                
+                      playerBoard[i,j] = Player.Circle;
+                    else if (arr[i + j] == 2)
+                        playerBoard[i,j] = Player.Cross;
+                    else 
+                        playerBoard[i,j] = Player.None;
+                }
+            }
+
+            return playerBoard;
+        }
+
+        public int[] ConvertToArray (Player[,] pArr, int rowCount)
+        {
+            int[] arr = new int[rowCount*rowCount];
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                for (int j = 0; j < rowCount; j++)
+                {
+                    if(pArr[i,j] == Player.Circle)
+                        arr[i + j] = 1;
+                    else if(pArr[i,j] == Player.Cross)
+                        arr[i + j] = 2;
+                    else
+                        arr[i + j] = 0;
+                }
+            }
+
+            return arr;
         }
     }
 }

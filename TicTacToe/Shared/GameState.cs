@@ -8,25 +8,15 @@ namespace Shared
     public class GameState
     {
         [DataMember]
-        public Player CurrentPlayer { get; private set; }
+        public int CurrentPlayer { get; private set; }
         
         [DataMember]
-        public Dictionary<Player, List<Coord>> Plays { get; private set; }
+        public int[] Plays { get; private set; }
 
-        public GameState(Player currentPlayer, Dictionary<Player, List<Coord>> plays)
+        public GameState(int currentPlayer, int[] plays)
         {
             CurrentPlayer = currentPlayer;
             Plays = plays;
         }
     }
-
-    [DataContract]
-    public struct Coord
-    {
-        [DataMember]
-        public int X;
-        [DataMember]
-        public int Y;
-    }
-
 }

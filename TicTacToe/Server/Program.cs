@@ -40,6 +40,9 @@ namespace Server
         private DateTime lastUpdated;
         private int currentNumberOfPlayers = 0;
 
+        //Current size
+        private int size = 9;
+
         public GameState GameState
         {
             get { return gameState; }
@@ -60,23 +63,23 @@ namespace Server
             return newerState;
         }
 
-        public Player StartNewGame()
+        public int StartNewGame()
         {
-            Player nextPlayer;
+            int nextPlayer;
             switch (currentNumberOfPlayers)
             {
                 case 0:
-                    nextPlayer = Player.Circle;
+                    nextPlayer = 1;
                     Logger.Log("First player joined");
                     ResetBoard();
                     Logger.Log("Board reset");
                     break;
                 case 1:
-                    nextPlayer = Player.Cross;
+                    nextPlayer = 2;
                     Logger.Log("Second player joined");
                     break;
                 default:
-                    nextPlayer = Player.None;
+                    nextPlayer = 3;
                     Logger.Log("Some douche who cannot play joined");
                     break;
             }
@@ -87,11 +90,8 @@ namespace Server
 
         private void ResetBoard()
         {
-            var state = new Dictionary<Player, List<Coord>> { 
-            { Player.Circle, new List<Coord>() }, 
-            { Player.Cross, new List<Coord>() } 
-            };
-            GameState = new GameState(Player.Circle, state);
+            var state = new int[size]; 
+            GameState = new GameState(1, state);
         }
     }
 
